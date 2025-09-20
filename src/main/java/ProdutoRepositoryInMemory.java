@@ -27,13 +27,13 @@ public class ProdutoRepositoryInMemory implements ProdutoRepository {
         if (produto != null) {
             produto.setValor(valor);
         } else {
-            System.out.println("Produto com ID " + idProduto + " não encontrado.");
+            System.out.println("\nProduto com ID " + idProduto + " não encontrado.");
         }
     }
 
     public void apagaProduto(String idProduto) {
         if (produtos.remove(idProduto) == null) {
-            System.out.println("Produto com ID " + idProduto + " não encontrado.");
+            System.out.println("\nProduto com ID " + idProduto + " não encontrado.");
         }
     }
 }

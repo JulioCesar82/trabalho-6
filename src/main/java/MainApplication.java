@@ -7,7 +7,7 @@ public class MainApplication {
         Scanner scanner = new Scanner(System.in);
         ProdutoRepository repository = null;
 
-        System.out.println("Escolha o tipo de repositório:");
+        System.out.println("\nEscolha o tipo de repositório:");
         System.out.println("1. Em Memória");
         System.out.println("2. MySQL");
         System.out.println("3. MongoDB");
@@ -18,73 +18,70 @@ public class MainApplication {
         switch (choice) {
             case 1:
                 repository = new ProdutoRepositoryInMemory();
-                System.out.println("Repositório Em Memória selecionado.");
+                System.out.println("\nRepositório Em Memória selecionado.");
                 break;
             case 2:
                 repository = new ProdutoRepositoryMySQL();
-                System.out.println("Repositório MySQL selecionado.");
+                System.out.println("\nRepositório MySQL selecionado.");
                 break;
             case 3:
                 repository = new ProdutoRepositoryMongoDB();
-                System.out.println("Repositório MongoDB selecionado.");
+                System.out.println("\nRepositório MongoDB selecionado.");
                 break;
             default:
-                System.out.println("Opção inválida. Usando repositório Em Memória por padrão.");
+                System.out.println("\nOpção inválida. Usando repositório Em Memória por padrão.");
                 repository = new ProdutoRepositoryInMemory();
                 break;
         }
 
         if (repository == null) {
-            System.err.println("Erro: Repositório não inicializado. Saindo.");
+            System.err.println("\nErro: Repositório não inicializado. Saindo.");
             return;
         }
 
         // CRUD operations
+        List<Produto> produtos;
 
         // Listar produtos
         System.out.println("\n--- Lista Original de Produtos ---");
-        List<Produto> produtos = repository.listaProdutos();
+        produtos = repository.listaProdutos();
         if (produtos.isEmpty()) {
-            System.out.println("Nenhum produto encontrado.");
+            System.out.println("\nNenhum produto encontrado.");
         } else {
             produtos.forEach(System.out::println);
         }
 
         // Insere novo produto
         Produto newProduct = new Produto("7", "Prod7", "Bla Bla", "500.0", "Bla Bla");
+        System.out.println("\n--- Inserindo Novo Produto ---");
         repository.insereProduto(newProduct);
-        System.out.println("\n--- Lista com Novo Produto ---");
-        repository.listaProdutos().forEach(System.out::println);
-
+        
         // Listar produtos
         System.out.println("\n--- Lista de Produtos com novo item ---");
-        List<Produto> produtos = repository.listaProdutos();
+        produtos = repository.listaProdutos();
         if (produtos.isEmpty()) {
-            System.out.println("Nenhum produto encontrado.");
+            System.out.println("\nNenhum produto encontrado.");
         } else {
             produtos.forEach(System.out::println);
         }
 
         // Altera valor do produto
-        repository.alteraValorProduto("7", "400");
-        System.out.println("\n--- Lista com Valor do Produto Alterado ---");
-        repository.listaProdutos().forEach(System.out::println);
-
+        System.out.println("\n--- Alterando Valor do Produto ---");
+        repository.alteraValorProduto("7", "400");        
 
         // Listar produtos
         System.out.println("\n--- Lista de Produtos com novo item atualizado ---");
-        List<Produto> produtos = repository.listaProdutos();
+        produtos = repository.listaProdutos();
         if (produtos.isEmpty()) {
-            System.out.println("Nenhum produto encontrado.");
+            System.out.println("\nNenhum produto encontrado.");
         } else {
             produtos.forEach(System.out::println);
         }
 
         // Apaga um produto
+        System.out.println("\n--- Apagando Produto ---");
         repository.apagaProduto("7");
-        System.out.println("\n--- Lista com Produto Apagado ---");
-        repository.listaProdutos().forEach(System.out::println);
-
+        
         // Teste de produto não encontrado
         // System.out.println("\n--- Testando operações com produto não existente ---");
         // repository.alteraValorProduto("99", "100");
@@ -93,12 +90,15 @@ public class MainApplication {
         // Listar produtos
         System.out.println("\n--- Lista de Produtos final ---");
 
-        List<Produto> produtos = repository.listaProdutos();
+        produtos = repository.listaProdutos();
         if (produtos.isEmpty()) {
-            System.out.println("Nenhum produto encontrado.");
+            System.out.println("\nNenhum produto encontrado.");
         } else {
             produtos.forEach(System.out::println);
         }
+
+
+        System.out.println("\n--- Encerrando Aplicação ---");
 
         scanner.close();
     }

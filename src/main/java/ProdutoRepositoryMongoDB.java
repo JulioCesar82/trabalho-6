@@ -17,7 +17,7 @@ public class ProdutoRepositoryMongoDB implements ProdutoRepository {
             this.collection = database.getCollection("produtos"); // Collection name
             initializeData();
         } else {
-            System.err.println("Não foi possível conectar ao MongoDB. Repositório não inicializado.");
+            System.err.println("\nNão foi possível conectar ao MongoDB. Repositório não inicializado.");
         }
     }
 
@@ -28,7 +28,7 @@ public class ProdutoRepositoryMongoDB implements ProdutoRepository {
             initialProducts.add(new Document("idProduto", "2").append("nome", "Prod2").append("descricao", "Desc2").append("valor", "200.0").append("estado", "Ativo"));
             initialProducts.add(new Document("idProduto", "3").append("nome", "Prod3").append("descricao", "Desc3").append("valor", "300.0").append("estado", "Inativo"));
             collection.insertMany(initialProducts);
-            System.out.println("Dados iniciais inseridos no MongoDB.");
+            System.out.println("\nDados iniciais inseridos no MongoDB.");
         }
     }
 
@@ -48,7 +48,7 @@ public class ProdutoRepositoryMongoDB implements ProdutoRepository {
         if (collection != null) {
             Document doc = produtoToDocument(produto);
             collection.insertOne(doc);
-            System.out.println("Produto " + produto.getNome() + " inserido no MongoDB.");
+            System.out.println("\nProduto " + produto.getNome() + " inserido no MongoDB.");
         }
     }
 
@@ -56,7 +56,7 @@ public class ProdutoRepositoryMongoDB implements ProdutoRepository {
     public void alteraValorProduto(String idProduto, String valor) {
         if (collection != null) {
             collection.updateOne(Filters.eq("idProduto", idProduto), Updates.set("valor", valor));
-            System.out.println("Valor do produto " + idProduto + " alterado para " + valor + " no MongoDB.");
+            System.out.println("\nValor do produto " + idProduto + " alterado para " + valor + " no MongoDB.");
         }
     }
 
@@ -64,7 +64,7 @@ public class ProdutoRepositoryMongoDB implements ProdutoRepository {
     public void apagaProduto(String idProduto) {
         if (collection != null) {
             collection.deleteOne(Filters.eq("idProduto", idProduto));
-            System.out.println("Produto " + idProduto + " apagado do MongoDB.");
+            System.out.println("\nProduto " + idProduto + " apagado do MongoDB.");
         }
     }
 

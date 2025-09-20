@@ -21,9 +21,9 @@ public class DBConnectionFactory {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(MYSQL_URL, MYSQL_USER, MYSQL_PASSWORD);
-            System.out.println("Conectado ao MySQL com sucesso!");
+            System.out.println("\nConectado ao MySQL com sucesso!");
         } catch (ClassNotFoundException | SQLException e) {
-            System.err.println("Erro de Conexão com MySQL: " + e.getMessage());
+            System.err.println("\nErro de Conexão com MySQL: " + e.getMessage());
             e.printStackTrace();
         }
         return conn;
@@ -33,10 +33,10 @@ public class DBConnectionFactory {
         try {
             MongoClient mongoClient = MongoClients.create(MONGODB_CONNECTION_STRING);
             MongoDatabase database = mongoClient.getDatabase(MONGODB_DATABASE_NAME);
-            System.out.println("Conectado ao MongoDB com sucesso!");
+            System.out.println("\nConectado ao MongoDB com sucesso!");
             return database;
         } catch (Exception e) {
-            System.err.println("Erro de Conexão com MongoDB: " + e.getMessage());
+            System.err.println("\nErro de Conexão com MongoDB: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -47,7 +47,7 @@ public class DBConnectionFactory {
             try {
                 conn.close();
             } catch (SQLException e) {
-                System.err.println("Erro ao fechar conexão MySQL: " + e.getMessage());
+                System.err.println("\nErro ao fechar conexão MySQL: " + e.getMessage());
                 e.printStackTrace();
             }
         }

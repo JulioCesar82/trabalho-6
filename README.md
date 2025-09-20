@@ -40,6 +40,7 @@ A aplicação é um projeto Maven. Para compilá-la e executá-la, siga os passo
     Após a compilação, você pode executar a aplicação com o seguinte comando:
 
     ```bash
-    mvn exec:java -Dexec.mainClass="MainApplication"
+    mvn exec:java
     ```
+
     A aplicação irá pedir para você escolher o tipo de repositório (Em Memória, MySQL ou MongoDB).

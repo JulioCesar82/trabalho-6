@@ -36,11 +36,11 @@ public class ProdutoRepositoryMySQL implements ProdutoRepository {
                                        "('2', 'Prod2', 'Desc2', '200.0', 'Ativo')," +
                                        "('3', 'Prod3', 'Desc3', '300.0', 'Inativo')";
                     stmt.executeUpdate(insertSQL);
-                    System.out.println("Dados iniciais inseridos no MySQL.");
+                    System.out.println("\nDados iniciais inseridos no MySQL.");
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao inicializar dados no MySQL: " + e.getMessage());
+            System.err.println("\nErro ao inicializar dados no MySQL: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -74,7 +74,7 @@ public class ProdutoRepositoryMySQL implements ProdutoRepository {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao listar produtos do MySQL: " + e.getMessage());
+            System.err.println("\nErro ao listar produtos do MySQL: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -100,10 +100,10 @@ public class ProdutoRepositoryMySQL implements ProdutoRepository {
                         + produto.getNome() + "','" + produto.getDescricao() + "','"
                         + produto.getValor() + "','" + produto.getEstado() + "')";
                 stmt.executeUpdate(insere);
-                System.out.println("Produto " + produto.getNome() + " inserido no MySQL.");
+                System.out.println("\nProduto " + produto.getNome() + " inserido no MySQL.");
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao inserir produto no MySQL: " + e.getMessage());
+            System.err.println("\nErro ao inserir produto no MySQL: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -125,10 +125,10 @@ public class ProdutoRepositoryMySQL implements ProdutoRepository {
                 stmt = conn.createStatement();
                 String atualiza = "update Produto set valor = '" + valor + "' where idProduto = '" + idProduto + "'";
                 stmt.executeUpdate(atualiza);
-                System.out.println("Valor do produto " + idProduto + " alterado para " + valor + " no MySQL.");
+                System.out.println("\nValor do produto " + idProduto + " alterado para " + valor + " no MySQL.");
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao alterar valor do produto no MySQL: " + e.getMessage());
+            System.err.println("\nErro ao alterar valor do produto no MySQL: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -150,10 +150,10 @@ public class ProdutoRepositoryMySQL implements ProdutoRepository {
                 stmt = conn.createStatement();
                 String apaga = "delete from Produto where idProduto = '" + idProduto + "'";
                 stmt.executeUpdate(apaga);
-                System.out.println("Produto " + idProduto + " apagado do MySQL.");
+                System.out.println("\nProduto " + idProduto + " apagado do MySQL.");
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao apagar produto do MySQL: " + e.getMessage());
+            System.err.println("\nErro ao apagar produto do MySQL: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
